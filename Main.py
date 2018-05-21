@@ -10,8 +10,8 @@ Fitness Function
 """
 import random
 
-SIZE = 4
-POPULATION = 50
+SIZE = 16
+POPULATION = 10
 ANSWER = False
 SOLUTION = []
 MAXFIT = SIZE*(SIZE-1)/2
@@ -99,7 +99,7 @@ def selection(gen):
     most = fittest.fit
     weaker = fitter.fit
     dead = []
-    for x in range(10):
+    for x in range(9):
         if most > weaker:
             rand = random.randrange(pop)
             if fitter not in dead:
@@ -147,7 +147,8 @@ while ANSWER is False:
             children.append(child2)
             total += child1.fit
             total += child2.fit
-            average.append(total/POPULATION)
+        print(total, "i am total")
+        average.append(total/POPULATION)
         gen = children
     else:
         for y in range(POPULATION//2):
@@ -157,11 +158,11 @@ while ANSWER is False:
             children[POPULATION-y-1] = child2
             total += child1.fit
             total += child2.fit
-            average.append(total / POPULATION)
+        average.append(total / POPULATION)
         mutant = children[random.randrange(POPULATION)]
         mutation(mutant)
         gen = children
     x += 1
     print(x)
 
-print(SIZE, MAXFIT, SOLUTION, x, average[x])
+print(SIZE, MAXFIT, SOLUTION, x, average)
